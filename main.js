@@ -9,9 +9,7 @@ function fetchAllPokemons(limit = 6) {
         console.log(`Error: ${err}`)
     );
 }
-function saveToFAv(id){
-    console.log(id)
-}
+
 
 function fetchOnePokemon(url) {
     fetch(url)  
@@ -23,7 +21,6 @@ function fetchOnePokemon(url) {
 }
 
 function showAllPokemons(allpokemons){
-    console.log(allpokemons);
     allpokemons.forEach(pokemon => {
         fetchOnePokemon(pokemon.url)
     });
@@ -31,16 +28,29 @@ function showAllPokemons(allpokemons){
 
 
 function setPokemonToList(pokemon){
-console.log(pokemon)
-const pokemonName = pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1);
+    const pokemonName = pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1);
 
-
+    const pokemonObj = {
+        id: pokemon.id,
+        name:pokemonName,
+        weight:pokemon.weight,
+        height:pokemon.height,
+    } 
     const pokemonList = document.getElementById('pokemonList');
     const pokemonDiv = document.createElement("div");
-    pokemonDiv.innerHTML = '<div class="relative border-2 p-4 rounded-lg border-blue-400 flex flex-row">' + 
+    pokemonDiv.setAttribute('class','relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
+    let saveButton = document.createElement("a");
+    saveButton.setAttribute("href", '#');
+    saveButton.setAttribute("onClick", 'saveToFAv('+JSON.stringify(pokemonObj) + ')');
+    saveButton.innerText = 'save';
+
+     
+    pokemonDiv.innerHTML = 
                 '<img class="w-44 h-auto mr-4 ml-0" src="' + 
                 pokemon.sprites.front_default +
-                '"alt="Pokemonbild">' +
+                '"alt="Pokemonbild">';
+                
+    pokemonDiv.innerHTML += 
                 '<div class="discrption">' + 
                     '<p class="text-center">ID:'+
                     pokemon.id + 
@@ -54,14 +64,22 @@ const pokemonName = pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1);
                     '<p class="text-center mb-5">Weight: ' + 
                      pokemon.weight +
                     ' lbs</p>'+
-                '</div>' + 
-                '<a href="#" onclick="saveToFAv('+
-                pokemon.id +
-                ')">save</a>' +         
                 '</div>';
+    pokemonDiv.appendChild(saveButton);  
     pokemonList.appendChild(pokemonDiv);
 }
 
+
+
+
+
+function saveToFAv(pokemon){
+    console.log(pokemon)
+    console.log(pokemon.id)
+    console.log(pokemon.name)
+    console.log(pokemon.weight)
+    console.log(pokemon.height)
+}
 
 
 
