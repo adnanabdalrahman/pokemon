@@ -1,127 +1,43 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API-basierte Liste</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
     <style>
-        .heart {
-            width: 30px;
-            height: 30px;
-            background-color: grey;
-            mask: url('heart.svg') no-repeat center / contain;
-            -webkit-mask: url('heart.svg') no-repeat center / contain;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .heart.favorited {
-            background-color: red;
-        }
+body {
+    font-family: 'Roboto Flex';
+}
     </style>
 </head>
+
 <body class="bg-gray-100 text-gray-800">
-    <header>
-        <nav class="bg-white p-4 shadow-md">
-            <div class="container mx-auto flex justify-between items-center">
-                <div class="text-xl font-bold">Pokemon lists</div>
-                <ul class="flex space-x-4">
-                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Home</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Journal</a></li>
-                </ul>
-            </div>
+    <header class="bg-blue-700 p-4 flex flex-row flex-nowrap content-center gap-4 justify-between">
+        <div class="logo flex flex-row flex-nowrap gap-4">
+            <img src="assets/img/pokeball.png" alt="Pokeball" class="size-12 invert">
+            <h1 class="text-4xl font-extrabold text-white">JournalDex</h1>
+        </div>
+        <nav class="flex flex-row flex-nowrap gap-4 items-center">
+            <a href="index.html" class="text-white text-2xl font-semibold">Home</a>
+            <a href="favoriten.html" class="text-white text-2xl font-semibold">Journal</a>
         </nav>
     </header>
     <main class="container mx-auto p-4">
         <div class="mb-4">
             <input type="text" id="search" placeholder="Suchen..." class="w-full p-2 border border-gray-300 rounded">
         </div>
-        <div class="grid grid-cols-2 gap-6">
-            <div class="relative border-2 p-4 rounded-lg border-blue-400">
-                <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Pokemonbild">
-                <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart1"></div>
-                </div>
-                <p class="text-center">ID: 1</p>
-                <p class="text-center">Name: Bulbasaur</p>
-                <p class="text-center mb-5">Weight: 6.9 kg</p>
-                <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">Notizen speichern</button>
-                <input class="border-2 w-full mb-5 p-2 focus:bg-red-100" type="text" placeholder="trage hier deine Notizen ein">
-            </div>
-            <div class="relative border-2 p-4 rounded-lg border-blue-400">
-                <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" alt="Pokemonbild">
-                <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart2"></div>
-                </div>
-                <p class="text-center">ID: 2</p>
-                <p class="text-center">Name: Ivysaur</p>
-                <p class="text-center mb-5">Weight: 13.0 kg</p>
-                <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">Notizen speichern</button>
-                <input class="border-2 w-full mb-5 p-2 focus:bg-red-100" type="text" placeholder="trage hier deine Notizen ein">
-            </div>
-            <div class="relative border-2 p-4 rounded-lg border-blue-400">
-                <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" alt="Pokemonbild">
-                <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart3"></div>
-                </div>
-                <p class="text-center">ID: 3</p>
-                <p class="text-center">Name: Venusaur</p>
-                <p class="text-center mb-5">Weight: 100.0 kg</p>
-                <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">Notizen speichern</button>
-                <input class="border-2 w-full mb-5 p-2 focus:bg-red-100" type="text" placeholder="trage hier deine Notizen ein">
-            </div>
-            <div class="relative border-2 p-4 rounded-lg border-blue-400">
-                <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Pokemonbild">
-                <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart4"></div>
-                </div>
-                <p class="text-center">ID: 4</p>
-                <p class="text-center">Name: Charmander</p>
-                <p class="text-center mb-5">Weight: 8.5 kg</p>
-                <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">Notizen speichern</button>
-                <input class="border-2 w-full mb-5 p-2 focus:bg-red-100" type="text" placeholder="trage hier deine Notizen ein">
-            </div>
+        <div id="pokemonList" class="grid grid-cols-3 gap-6">
         </div>
     </main>
     <footer class="text-center p-4 mt-auto">
         <p>© 2024 Pokemon</p>
-    </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hearts = document.querySelectorAll('.heart');
-
-            hearts.forEach(heart => {
-                heart.addEventListener('click', () => {
-                    heart.classList.toggle('favorited');
-                });
-            });
-        });
-
-        const apiUrl = 'https://api.example.com/data'; // Beispiel-API-URL
-
-        async function fetchData() {
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error(`HTTP-Fehler! Status: ${response.status}`);
-                }
-                const data = await response.json();
-                displayData(data);
-            } catch (error) {
-                console.error('Fehler beim Abrufen der API:', error);
-            }
-        }
-
-        function displayData(data) {
-            const list = document.getElementById('list');
-            list.innerHTML = ''; // Liste leeren
-
-            data.forEach(item => {
-                const listItem = document.createElement('div');
-                listItem.className = 'bg-white p-4 rounded shadow';
-
-                listItem.innerHTML = `
-                    <h2 class="text-xl font-bold">${item.name}</h
-
+    </footer>  
+      <script src="main.js"></script>
+ </body>
+</html>
 
 
