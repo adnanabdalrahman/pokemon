@@ -3,30 +3,19 @@ export class Pokemon {
     name;
     photo;
     prefix = 'https://pokeapi.co/api/v2/pokemon?';
-    allpokemons;
 
-    fetchAllPokemons(limit = 6) {
-        let url = this.prefix + "limit=" + limit;
-        fetch(url)  
-        .then(response => response.json())  
-        .then(allpokemons => { return allpokemons })
-        .catch((err) => 
-            console.log(`Error: ${err}`)
-        );
+     SaveFavPokemon(limit = 6) {
+            //fetch
+            //save to local storage
+            return(limit);
+
+        }
+
+    fetchOnePokemon(id){
+        console.log(id);
+        return(id);
     }
 
-
-    async asyncfetchAllPokemons(limit = 6) {
-        let url = this.prefix + "limit=" + limit;
-        const response = await fetch(url)
-        const data = await response.json()
-        this.allpokemons = data;
-        return data;
-    }
-
-    sayHello (){
-        return 'hello world';
-    }
   }
   
 
