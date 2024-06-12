@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="font-body">
+    <main>
+        <header class="bg-blue-700 p-4 flex flex-row flex-nowrap content-center gap-4 justify-between">
+            <div class="logo flex flex-row flex-nowrap gap-4">
+                <img src="assets/img/pokeball.png" alt="Pokeball" class="size-12 invert">
+                <h1 class="text-4xl font-extrabold text-white">JournalDex</h1>
+            </div>
+            <nav class="flex flex-row flex-nowrap gap-4 items-center">
+                <a href="index.html" class="text-white text-2xl font-semibold">Home</a>
+                <a href="#" class="text-white text-2xl font-semibold">Journal</a>
+            </nav>
+            
+        </header>
+        <section>
+            <h2 class="text-3xl p-6">Pokemon Favoriten</h2>
+            <p class="p-6">
+              Hier siehst du deine Pokemons, welche du als Favoriten auf der
+              Hauptseite markiert hast. <br />Füge Notizen und Anmerkungen zu
+              deinen Favoriten über das Textfeld hinzu.
+            </p>
+        </section>
+      <section>
+          <ul class="p-6 sm:gap-10 flex flex-wrap gap-8">
+            <li class="border-2 p-4 rounded-lg border-blue-400 flex flex-nowrap flex-col justify-around">
+              <img
+                class="max-w-full h-auto"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+                alt="Pokemonbild"
+              />
+              <p class="text-center">ID: 1</p>
+              <p class="text-center">Name: Bulbasaur</p>
+              <p class="text-center mb-5">Weight: 2,3 kg</p>
+              <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">
+                Save notes
+              </button>
+              <input
+                class="border-2 w-full mb-5 p-2 focus:bg-red-100"
+                type="text"
+                placeholder="Fill in your notes"
+              />
+            </li>
+
+            <li class="border-2 p-4 rounded-lg border-blue-400 flex flex-nowrap flex-col">
+              <img
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png"
+                alt="Pokemonbild"
+              />
+              <p class="text-center">ID: 5</p>
+              <p class="text-center">Name: Ivysaur</p>
+              <p class="text-center mb-5">Weight: 1,2 kg</p>
+              <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">
+                Save notes
+              </button>
+              <input
+                class="border-2 w-full mb-5 p-2 focus:bg-red-100"
+                type="text"
+                placeholder="Fill in your notes"
+              />
+            </li>
+
+            <li class="border-2 p-4 rounded-lg border-blue-400 flex flex-nowrap flex-col">
+                <img
+                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+                  alt="Pokemonbild"
+                />
+                <p class="text-center">ID: 8</p>
+                <p class="text-center">Name: Squritle</p>
+                <p class="text-center mb-5">Weight: 1,2 kg</p>
+                <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">
+                  Save notes
+                </button>
+                <input
+                  class="border-2 w-full mb-5 p-2 focus:bg-red-100"
+                  type="text"
+                  placeholder="Fill in your notes"
+                />
+              </li>
+          </ul>
+      </section>
+    </main>
+    <script src="favoriten.js"></script>
+  </body>
+</html>
