@@ -1,3 +1,5 @@
+let favoritePokemons = [];
+
 fetchAllPokemons(150);
 
 function fetchAllPokemons(limit = 6) {
@@ -41,27 +43,30 @@ function setPokemonToList(pokemon){
     pokemonDiv.setAttribute('class','relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
     let saveButton = document.createElement("a");
     saveButton.setAttribute("href", '#');
-    saveButton.setAttribute("onClick", 'saveToFAv('+JSON.stringify(pokemonObj) + ')');
-    saveButton.innerText = 'save';
-
+    saveButton.setAttribute("onClick", 'saveToFav('+JSON.stringify(pokemonObj) + ')');
+    saveButton.innerText = 'Save';
+    saveButton.classList.add('inline-flex', 'items-center', 'justify-center','mx-4', 'align-center', 'border-2', 'rounded-lg', 'font-bold', 'mb-5', 'p-2', 'border-blue-400', 'rounded', 'hover:bg-blue-400', 'hover:text-white'); 
+    saveButton.addEventListener('click', function() {
+        saveToFav(pokemonObj);
+    });
      
     pokemonDiv.innerHTML = 
-                '<img class="w-44 h-auto mr-4 ml-0" src="' + 
+                '<img class="w-44 h-auto" src="' + 
                 pokemon.sprites.front_default +
                 '"alt="Pokemonbild">';
                 
     pokemonDiv.innerHTML += 
-                '<div class="discrption">' + 
+                '<div class="discription flex flex-col justify-center content-center">' + 
                     '<p class="text-center">ID:'+
                     pokemon.id + 
                     '</p>'+
                     '<p class="text-center">Name: ' + 
                     pokemonName + 
                     '</p>'+
-                    '<p class="text-center mb-5">Height: ' + 
+                    '<p class="text-center">Height: ' + 
                      pokemon.height +
                     ' ft</p>'+
-                    '<p class="text-center mb-5">Weight: ' + 
+                    '<p class="text-center">Weight: ' + 
                      pokemon.weight +
                     ' lbs</p>'+
                 '</div>';
@@ -71,14 +76,15 @@ function setPokemonToList(pokemon){
 
 
 
-
-
-function saveToFAv(pokemon){
-    console.log(pokemon)
-    console.log(pokemon.id)
-    console.log(pokemon.name)
-    console.log(pokemon.weight)
-    console.log(pokemon.height)
+function saveToFav(pokemon){
+    favoritePokemons.push({
+        id: pokemon.id,
+        name: pokemon.name,
+        weight: pokemon.weight,
+        height: pokemon.height
+    });
+    localStorage.setItem('favoritePokemons', JSON.stringify(favoritePokemons));
+    console.log(`Saved: ` + favoritePokemons);
 }
 
 
