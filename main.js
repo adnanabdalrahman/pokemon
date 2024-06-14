@@ -1,9 +1,8 @@
 fetchAllPokemons(150);
 
+
 async function fetchAllPokemons(limit = 6) {
     const url = "https://pokeapi.co/api/v2/pokemon?limit=" + limit;
-    const results = fetch(url);
-    
     fetch(url)  
     .then(response => response.json())  
     .then(allpokemons => showAllPokemons(allpokemons.results))
@@ -27,7 +26,6 @@ function showAllPokemons(allpokemons){
     });
 }
 
-
 function setPokemonToList(pokemon){
     const pokemonName = pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1);
 
@@ -45,12 +43,10 @@ function setPokemonToList(pokemon){
     saveButton.setAttribute("onClick", 'saveToFAv('+JSON.stringify(pokemonObj) + ')');
     saveButton.innerText = 'save';
 
-     
     pokemonDiv.innerHTML = 
                 '<img class="w-40 h-auto mr-4 ml-0" src="' + 
                 pokemon.sprites.front_default +
                 '"alt="Pokemonbild">';
-                
     pokemonDiv.innerHTML += 
                 '<div class="discrption">' + 
                     '<p class="id text-center">'+
@@ -71,9 +67,6 @@ function setPokemonToList(pokemon){
 }
 
 
-
-
-
 function saveToFAv(pokemon){
     console.log(pokemon)
     console.log(pokemon.id)
@@ -83,14 +76,19 @@ function saveToFAv(pokemon){
 }
 
 
-
-var input = document.getElementById('search');
-/* input.onkeyup = function() {
-    console.log('dsdsdsd');
+function deleteFromFav(pokemon){
+    console.log(pokemon)
+    console.log(pokemon.id)
+    console.log(pokemon.name)
+    console.log(pokemon.weight)
+    console.log(pokemon.height)
 }
-    */
-input.addEventListener('keyup',(e) => filter(e));
 
+
+
+// filter 
+const filterInput = document.getElementById('search');
+filterInput.addEventListener('keyup',(e) => filter(e));
 
 function filter(e) {
     const filter = e.target.value.toUpperCase();
