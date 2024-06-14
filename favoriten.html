@@ -3,11 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Journal Page</title>
+    <title>Pokemon Homepage</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+    <style>
+        body {
+            font-family: 'Roboto Flex';
+        }
+    </style>
   </head>
   <body class="font-body">
     <main>
@@ -31,64 +37,8 @@
             </p>
         </section>
       <section>
-        <div id="pokemonfavoriten" class="grid grid-cols-3 gap-6">
-        </div>
-
-          <ul class="p-6 sm:gap-10 flex flex-wrap gap-8">
-            <li class="border-2 p-4 rounded-lg border-blue-400 flex flex-nowrap flex-col justify-around">
-              <img
-                class="max-w-full h-auto"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
-                alt="Pokemonbild"
-              />
-              <p class="text-center">ID: 1</p>
-              <p class="text-center">Name: Bulbasaur</p>
-              <p class="text-center mb-5">Weight: 2,3 kg</p>
-              <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">
-                Save notes
-              </button>
-              <input
-                class="border-2 w-full mb-5 p-2 focus:bg-red-100"
-                type="text"
-                placeholder="Fill in your notes"
-              />
-            </li>
-
-            <li class="border-2 p-4 rounded-lg border-blue-400 flex flex-nowrap flex-col">
-              <img
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png"
-                alt="Pokemonbild"
-              />
-              <p class="text-center">ID: 5</p>
-              <p class="text-center">Name: Ivysaur</p>
-              <p class="text-center mb-5">Weight: 1,2 kg</p>
-              <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">
-                Save notes
-              </button>
-              <input
-                class="border-2 w-full mb-5 p-2 focus:bg-red-100"
-                type="text"
-                placeholder="Fill in your notes"
-              />
-            </li>
-
-            <li class="border-2 p-4 rounded-lg border-blue-400 flex flex-nowrap flex-col">
-                <img
-                  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
-                  alt="Pokemonbild"
-                />
-                <p class="text-center">ID: 8</p>
-                <p class="text-center">Name: Squritle</p>
-                <p class="text-center mb-5">Weight: 1,2 kg</p>
-                <button class="border-2 rounded-lg mb-5 p-2 border-blue-400">
-                  Save notes
-                </button>
-                <input
-                  class="border-2 w-full mb-5 p-2 focus:bg-red-100"
-                  type="text"
-                  placeholder="Fill in your notes"
-                />
-              </li>
+          <ul id="pokemonfavoriten" class="p-6 sm:gap-10 flex flex-wrap gap-8">
+            
           </ul>
       </section>
     </main>
