@@ -45,6 +45,7 @@ function setPokemonToList(pokemon) {
                 '<p class="weight text-center mb-5">' + pokemon.weight + ' lbs</p>' +
             '</div>' +
         '</div>';
+        
 
     let noteDiv = document.createElement("div");
     noteDiv.setAttribute("class", 'w-full flex-wrap flex gap-2 p-3');
