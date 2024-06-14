@@ -25,10 +25,10 @@
             '<div class="w-full flex flex-wrap">' +
                 '<img class="w-40 h-auto mr-4 ml-0" src="' + pokemon.picture + '"alt="Pokemonbild">' + 
                 '<div class="discrption content-center">' + 
-                    '<p class="id text-center">'+ pokemon.id +  '</p>'+
+                    '<p class="id text-center">ID: '+ pokemon.id +  '</p>'+
                     '<p class="name text-center">' +  pokemonName + '</p>' +
-                    '<p class="height text-center">' + pokemon.height +' ft</p>'+
-                    '<p class="weight text-center mb-5">' + pokemon.weight + ' lbs</p>'+
+                    '<p class="height text-center">Height: ' + pokemon.height +' ft</p>'+
+                    '<p class="weight text-center mb-5">Weight: ' + pokemon.weight + ' lbs</p>'+
                 '</div>'+
             '</div>';
 
