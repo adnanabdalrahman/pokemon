@@ -24,6 +24,17 @@ function setPokemonToList(pokemon) {
     const pokemonLi = document.createElement("li");
     pokemonLi.setAttribute('class', 'flex-col relative border-2 p-4 rounded-lg border-blue-400 flex flex-row');
 
+        pokemonLi.innerHTML = 
+            '<div class="w-full flex flex-wrap">' +
+                '<img class="w-40 h-auto mr-4 ml-0" src="' + pokemon.picture + '"alt="Pokemonbild">' + 
+                '<div class="discrption content-center">' + 
+                    '<p class="id text-center">ID: '+ pokemon.id +  '</p>'+
+                    '<p class="name text-center">' +  pokemonName + '</p>' +
+                    '<p class="height text-center">Height: ' + pokemon.height +' ft</p>'+
+                    '<p class="weight text-center mb-5">Weight: ' + pokemon.weight + ' lbs</p>'+
+                '</div>'+
+            '</div>';
+
     pokemonLi.innerHTML = 
         '<div class="w-full flex flex-wrap">' +
             '<img class="w-40 h-auto mr-4 ml-0" src="' + pokemon.picture + '" alt="Pokemonbild">' + 
@@ -34,6 +45,7 @@ function setPokemonToList(pokemon) {
                 '<p class="weight text-center mb-5">' + pokemon.weight + ' lbs</p>' +
             '</div>' +
         '</div>';
+        
 
     let noteDiv = document.createElement("div");
     noteDiv.setAttribute("class", 'w-full flex-wrap flex gap-2 p-3');

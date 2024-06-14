@@ -40,12 +40,12 @@ function setPokemonToList(pokemon){
     } 
     const pokemonList = document.getElementById('pokemonList');
     const pokemonDiv = document.createElement("li");
-    pokemonDiv.setAttribute('class','relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
+    pokemonDiv.setAttribute('class','flex flex-row flex-wrap justify-center content-center relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
     let saveButton = document.createElement("a");
     saveButton.setAttribute("href", '#');
     //saveButton.setAttribute("onClick", 'saveToFav('+JSON.stringify(pokemonObj) + ')');
     saveButton.innerText = 'Save';
-    saveButton.classList.add('inline-flex', 'items-center', 'justify-center','mx-4', 'align-center', 'border-2', 'rounded-lg', 'font-bold', 'mb-5', 'p-2', 'border-blue-400', 'rounded', 'hover:bg-blue-400', 'hover:text-white'); 
+    saveButton.classList.add('inline-flex', 'items-center', 'justify-center','mx-4', 'align-center', 'border-2', 'rounded-lg', 'font-bold', 'p-2', 'border-blue-400', 'rounded'); 
     saveButton.addEventListener('click', function() {
         saveToFav(pokemonObj);
     });
@@ -55,18 +55,17 @@ function setPokemonToList(pokemon){
                 pokemon.sprites.front_default +
                 '"alt="Pokemonbild">';
     pokemonDiv.innerHTML += 
-                '<div class="discription flex flex-col justify-center content-center">' + 
-                    '<p class="id text-center">'+
+                '<div class="discription flex flex-col justify-center">' + 
+                    '<p class="id text-center">ID: '+
                     pokemon.id + 
                     '</p>'+
                     '<p class="name text-center">' + 
                     pokemonName + 
                     '</p>'+
-                    '<p class="text-center">Height: ' + 
-                    '<p class="height text-center">' + 
+                    '<p class="height text-center">Height:' + 
                      pokemon.height +
                     ' ft</p>'+
-                    '<p class="weight text-center">' + 
+                    '<p class="weight text-center">Weight: ' + 
                      pokemon.weight +
                     ' lbs</p>'+
                 '</div>';
