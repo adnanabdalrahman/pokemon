@@ -1,6 +1,7 @@
     // Abrufen und Parsen des Arrays
 
     const pokemonfavoriten = retrieveAllPokemons();
+    console.log(pokemonfavoriten)
     if (pokemonfavoriten) pokemonfavoriten.forEach(setPokemonToList)
 
     //Darstellung der Favoriten 
@@ -11,40 +12,70 @@
             name:pokemonName,
             weight:pokemon.weight,
             height:pokemon.height,
+            note:pokemon.note,
+
         } 
 
         const pokemonList = document.getElementById('pokemonfavoriten');
-        const pokemonDiv = document.createElement("li");
-        pokemonDiv.setAttribute('class','flex-col relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
+        const pokemonLi = document.createElement("li");
+        pokemonLi.setAttribute('class','flex-col relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
         
-        let deleteButton = document.createElement("a");
-        deleteButton.setAttribute("href", '#');
-        deleteButton.setAttribute("class", 'w-24 border-2 rounded-lg mb-5 p-2 border-blue-400');
 
-        deleteButton.setAttribute("onClick", 'deleteFromFav('+JSON.stringify(pokemonObj) + ')');
-        deleteButton.innerText = 'Delete';
-    
-        pokemonDiv.innerHTML = 
-            '<div class="w-full">' +
+        pokemonLi.innerHTML = 
+            '<div class="w-full flex flex-wrap">' +
                 '<img class="w-40 h-auto mr-4 ml-0" src="' + pokemon.picture + '"alt="Pokemonbild">' + 
-                '<div class="discrption">' + 
+                '<div class="discrption content-center">' + 
                     '<p class="id text-center">'+ pokemon.id +  '</p>'+
                     '<p class="name text-center">' +  pokemonName + '</p>' +
                     '<p class="height text-center">' + pokemon.height +' ft</p>'+
                     '<p class="weight text-center mb-5">' + pokemon.weight + ' lbs</p>'+
-                '</div>';
-                pokemonDiv.appendChild(deleteButton);  
-                pokemonDiv.innerHTML +=
                 '</div>'+
-                '<div class="w-full">' +
-                '<button class="border-2 rounded-lg mb-5 p-2 border-blue-400"> Save notes' + 
-                '</button>'+ 
-                '<input class="border-2 w-full mb-5 p-2 focus:bg-red-100" type="text"' + 
-                    'placeholder="Fill in your notes"/>' +
-                '</div>';
+            '</div>';
 
-                    ;
-        pokemonList.appendChild(pokemonDiv);
+
+                let noteDiv = document.createElement("div");
+                noteDiv.setAttribute("class", 'w-full flex-wrap flex gap-2 p-3');
+
+
+                //delete button
+                let deleteButton = document.createElement("a");
+                deleteButton.setAttribute("href", '#');
+                deleteButton.setAttribute("class", 'border-2 rounded-lg mb-5 p-2 border-blue-400');
+                deleteButton.setAttribute("onClick", 'deleteFromFav('+JSON.stringify(pokemonObj) + ')');
+                deleteButton.innerText = 'Delete';
+                noteDiv.appendChild(deleteButton);  
+
+
+                //save button
+                let saveNote = document.createElement("a");
+                saveNote.setAttribute("href", '#');
+                saveNote.setAttribute("class", 'border-2 rounded-lg mb-5 p-2 border-blue-400');
+                saveNote.setAttribute("onClick", 'saveNoteButton('+JSON.stringify(pokemonObj) + ')');
+                saveNote.innerText = 'Save Note';
+                noteDiv.appendChild(saveNote);  
+
+                //note input
+                let note = document.createElement("input");
+                note.setAttribute("type", 'textarea');
+                note.setAttribute("class", 'flex-none border-2 w-full mb-5 p-2 focus:bg-red-100');
+                note.setAttribute("id", 'note-'+ pokemon.id);
+                note.setAttribute("placeholder", 'insert your note');
+                noteDiv.appendChild(note);  
+               
+                pokemonLi.appendChild(noteDiv);
+
+                //note show
+                let noteShow = document.createElement("p");
+                noteShow.setAttribute("class", 'flex-none w-full mb-5 p-2 focus:bg-red-100');
+                noteShow.setAttribute("id", 'noteShow-'+ pokemon.id);
+
+                noteShow.innerText = pokemon.note??''
+                //noteDiv.appendChild(pokemon.note?noteShow:'');  
+                noteDiv.appendChild(noteShow);
+
+                pokemonLi.appendChild(noteDiv);
+
+                pokemonList.appendChild(pokemonLi);
     }
 
 
@@ -60,7 +91,6 @@
 
     function deleteFromFav(pokemon){
         let pokemonfavoriten = retrieveAllPokemons();
-        console.log(pokemonfavoriten);
         const foundPokemon = pokemonfavoriten.find(p => p.id === pokemon.id)
         if (foundPokemon){
             const index = pokemonfavoriten.indexOf(foundPokemon);
@@ -72,6 +102,17 @@
     
 
     
+    function saveNoteButton(pokemon){
+        let pokemonfavoriten = retrieveAllPokemons();
+        const foundPokemon = pokemonfavoriten.find(p => p.id === pokemon.id)
+        if (foundPokemon){
+            const index = pokemonfavoriten.indexOf(foundPokemon);
+            const note = document.getElementById('note-'+ pokemon.id).value;
+            pokemonfavoriten[index].note = note;
+            localStorage.setItem('pokemonfavoriten', JSON.stringify(pokemonfavoriten));
+            location.reload();
+        }
+    }
     
     
  
