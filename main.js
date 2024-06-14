@@ -1,7 +1,9 @@
 fetchAllPokemons(150);
 
-function fetchAllPokemons(limit = 6) {
-    let url = "https://pokeapi.co/api/v2/pokemon?limit=" + limit;
+async function fetchAllPokemons(limit = 6) {
+    const url = "https://pokeapi.co/api/v2/pokemon?limit=" + limit;
+    const results = fetch(url);
+    
     fetch(url)  
     .then(response => response.json())  
     .then(allpokemons => showAllPokemons(allpokemons.results))
@@ -9,7 +11,6 @@ function fetchAllPokemons(limit = 6) {
         console.log(`Error: ${err}`)
     );
 }
-
 
 function fetchOnePokemon(url) {
     fetch(url)  
@@ -37,7 +38,7 @@ function setPokemonToList(pokemon){
         height:pokemon.height,
     } 
     const pokemonList = document.getElementById('pokemonList');
-    const pokemonDiv = document.createElement("div");
+    const pokemonDiv = document.createElement("li");
     pokemonDiv.setAttribute('class','relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
     let saveButton = document.createElement("a");
     saveButton.setAttribute("href", '#');
@@ -46,22 +47,22 @@ function setPokemonToList(pokemon){
 
      
     pokemonDiv.innerHTML = 
-                '<img class="w-44 h-auto mr-4 ml-0" src="' + 
+                '<img class="w-40 h-auto mr-4 ml-0" src="' + 
                 pokemon.sprites.front_default +
                 '"alt="Pokemonbild">';
                 
     pokemonDiv.innerHTML += 
                 '<div class="discrption">' + 
-                    '<p class="text-center">ID:'+
+                    '<p class="id text-center">'+
                     pokemon.id + 
                     '</p>'+
-                    '<p class="text-center">Name: ' + 
+                    '<p class="name text-center">' + 
                     pokemonName + 
                     '</p>'+
-                    '<p class="text-center mb-5">Height: ' + 
+                    '<p class="height text-center">' + 
                      pokemon.height +
                     ' ft</p>'+
-                    '<p class="text-center mb-5">Weight: ' + 
+                    '<p class="weight text-center mb-5">' + 
                      pokemon.weight +
                     ' lbs</p>'+
                 '</div>';
@@ -82,4 +83,25 @@ function saveToFAv(pokemon){
 }
 
 
+
+var input = document.getElementById('search');
+/* input.onkeyup = function() {
+    console.log('dsdsdsd');
+}
+    */
+input.addEventListener('keyup',(e) => filter(e));
+
+
+function filter(e) {
+    const filter = e.target.value.toUpperCase();
+    const lis = Array.from(document.getElementsByTagName('li'));
+
+    lis.forEach(li => {
+        const name = li.getElementsByClassName('name')[0].textContent;
+        if (name.toUpperCase().startsWith(filter)) 
+            li.style.display = 'flex';
+        else
+        li.style.display = 'none';
+    });
+}
 
