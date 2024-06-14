@@ -90,10 +90,6 @@ function saveToFav(pokemon){
 
 }
 
-function deleteFromFav(pokemon){
-
-}
-
 
 // filter 
 const filterInput = document.getElementById('search');

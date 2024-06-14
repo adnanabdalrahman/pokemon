@@ -1,11 +1,7 @@
-
     // Abrufen und Parsen des Arrays
-    const pokemonfavoriten = localStorage.getItem('pokemonfavoriten')
-    if(pokemonfavoriten !== null){
-        let retrievedPokemon = JSON.parse(pokemonfavoriten);
-        retrievedPokemon.forEach(setPokemonToList);
-    }
 
+    const pokemonfavoriten = retrieveAllPokemons();
+    if (pokemonfavoriten) pokemonfavoriten.forEach(setPokemonToList)
 
     //Darstellung der Favoriten 
     function setPokemonToList(pokemon){
@@ -52,9 +48,28 @@
     }
 
 
+    function retrieveAllPokemons(){
+        const pokemonfavoriten = localStorage.getItem('pokemonfavoriten')
+        if(pokemonfavoriten !== null){
+            let retrievedPokemon = JSON.parse(pokemonfavoriten);
+            return retrievedPokemon;
+        }
+        return null
+    }
 
 
-
+    function deleteFromFav(pokemon){
+        let pokemonfavoriten = retrieveAllPokemons();
+        console.log(pokemonfavoriten);
+        const foundPokemon = pokemonfavoriten.find(p => p.id === pokemon.id)
+        if (foundPokemon){
+            const index = pokemonfavoriten.indexOf(foundPokemon);
+            pokemonfavoriten.splice(index, 1);
+            localStorage.setItem('pokemonfavoriten', JSON.stringify(pokemonfavoriten));
+            location.reload();
+        }
+    }
+    
 
     
     
