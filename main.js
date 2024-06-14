@@ -1,3 +1,4 @@
+
 fetchAllPokemons(150);
 
 
@@ -34,31 +35,38 @@ function setPokemonToList(pokemon){
         name:pokemonName,
         weight:pokemon.weight,
         height:pokemon.height,
+        picture:pokemon.sprites.front_default,
+
     } 
     const pokemonList = document.getElementById('pokemonList');
     const pokemonDiv = document.createElement("li");
     pokemonDiv.setAttribute('class','relative border-2 p-4 rounded-lg border-blue-400 flex flex-row>')
     let saveButton = document.createElement("a");
     saveButton.setAttribute("href", '#');
-    saveButton.setAttribute("onClick", 'saveToFAv('+JSON.stringify(pokemonObj) + ')');
-    saveButton.innerText = 'save';
-
+    //saveButton.setAttribute("onClick", 'saveToFav('+JSON.stringify(pokemonObj) + ')');
+    saveButton.innerText = 'Save';
+    saveButton.classList.add('inline-flex', 'items-center', 'justify-center','mx-4', 'align-center', 'border-2', 'rounded-lg', 'font-bold', 'mb-5', 'p-2', 'border-blue-400', 'rounded', 'hover:bg-blue-400', 'hover:text-white'); 
+    saveButton.addEventListener('click', function() {
+        saveToFav(pokemonObj);
+    });
+     
     pokemonDiv.innerHTML = 
                 '<img class="w-40 h-auto mr-4 ml-0" src="' + 
                 pokemon.sprites.front_default +
                 '"alt="Pokemonbild">';
     pokemonDiv.innerHTML += 
-                '<div class="discrption">' + 
+                '<div class="discription flex flex-col justify-center content-center">' + 
                     '<p class="id text-center">'+
                     pokemon.id + 
                     '</p>'+
                     '<p class="name text-center">' + 
                     pokemonName + 
                     '</p>'+
+                    '<p class="text-center">Height: ' + 
                     '<p class="height text-center">' + 
                      pokemon.height +
                     ' ft</p>'+
-                    '<p class="weight text-center mb-5">' + 
+                    '<p class="weight text-center">' + 
                      pokemon.weight +
                     ' lbs</p>'+
                 '</div>';
@@ -67,23 +75,24 @@ function setPokemonToList(pokemon){
 }
 
 
-function saveToFAv(pokemon){
-    console.log(pokemon)
-    console.log(pokemon.id)
-    console.log(pokemon.name)
-    console.log(pokemon.weight)
-    console.log(pokemon.height)
-}
+function saveToFav(pokemon){
+    let pokemonfavoriten = JSON.parse(localStorage.getItem('pokemonfavoriten'));
+    if (pokemonfavoriten === null)
+        pokemonfavoriten = [pokemon];
+    else
+        if (!pokemonfavoriten.find(p => p.id === pokemon.id)){
+            pokemonfavoriten.push(pokemon);
+        }
 
+    localStorage.setItem('pokemonfavoriten', JSON.stringify(pokemonfavoriten));
+
+    console.log(pokemonfavoriten)
+
+}
 
 function deleteFromFav(pokemon){
-    console.log(pokemon)
-    console.log(pokemon.id)
-    console.log(pokemon.name)
-    console.log(pokemon.weight)
-    console.log(pokemon.height)
-}
 
+}
 
 
 // filter 

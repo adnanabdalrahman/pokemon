@@ -1,20 +1,12 @@
-    // Speichern eines Objekts
-    var pokemonfavoriten = [
-        { id: '1', name: 'Bulbasaur', height: '7 ft', weight: '1000 lbs', picture: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png'},
-        { id: '2', name: 'Ivysaur', height: '11 ft', weight: '130 lbs', picture: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png'},
-        { id: '3', name: 'Charmander', height: '10 ft', weight: '190 lbs', picture: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png'}
-    ];
-    
-    localStorage.setItem('pokemonfavoriten', JSON.stringify(pokemonfavoriten));
-    
+
     // Abrufen und Parsen des Arrays
-    var retrievedPokemon = JSON.parse(localStorage.getItem('pokemonfavoriten'));
+    const pokemonfavoriten = localStorage.getItem('pokemonfavoriten')
+    if(pokemonfavoriten !== null){
+        let retrievedPokemon = JSON.parse(pokemonfavoriten);
+        retrievedPokemon.forEach(setPokemonToList);
+    }
 
-    retrievedPokemon.forEach(setPokemonToList);
 
-
-
-    
     //Darstellung der Favoriten 
     function setPokemonToList(pokemon){
         const pokemonName = pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1);
