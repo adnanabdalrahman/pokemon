@@ -7,16 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .heart {
-            width: 30px;
-            height: 30px;
-            background-color: grey;
-            mask: url('heart.svg') no-repeat center / contain;
-            -webkit-mask: url('heart.svg') no-repeat center / contain;
+            color: white;
+            font-size: 2rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: color 0.3s ease;
         }
         .heart.favorited {
-            background-color: red;
+            color: red;
         }
     </style>
 </head>
@@ -40,7 +37,7 @@
             <div class="relative border-2 p-4 rounded-lg border-blue-400">
                 <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Pokemonbild">
                 <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart1"></div>
+                    <div class="heart" id="heart1">❤️</div>
                 </div>
                 <p class="text-center">ID: 1</p>
                 <p class="text-center">Name: Bulbasaur</p>
@@ -51,7 +48,7 @@
             <div class="relative border-2 p-4 rounded-lg border-blue-400">
                 <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" alt="Pokemonbild">
                 <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart2"></div>
+                    <div class="heart" id="heart2">❤️</div>
                 </div>
                 <p class="text-center">ID: 2</p>
                 <p class="text-center">Name: Ivysaur</p>
@@ -62,7 +59,7 @@
             <div class="relative border-2 p-4 rounded-lg border-blue-400">
                 <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" alt="Pokemonbild">
                 <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart3"></div>
+                    <div class="heart" id="heart3">❤️</div>
                 </div>
                 <p class="text-center">ID: 3</p>
                 <p class="text-center">Name: Venusaur</p>
@@ -73,7 +70,7 @@
             <div class="relative border-2 p-4 rounded-lg border-blue-400">
                 <img class="w-full h-auto mx-auto" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Pokemonbild">
                 <div class="absolute top-2 right-2">
-                    <div class="heart" id="heart4"></div>
+                    <div class="heart" id="heart4">❤️</div>
                 </div>
                 <p class="text-center">ID: 4</p>
                 <p class="text-center">Name: Charmander</p>
@@ -132,5 +129,6 @@
     </script>
 </body>
 </html>
+
 
 
