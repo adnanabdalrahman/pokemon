@@ -89,11 +89,11 @@ function saveToFav(pokemon) {
     let isAlreadyFavorited = pokemonFavoriten.some(p => p.id === pokemon.id);
 
     if (isAlreadyFavorited) {
-        alert(`${pokemon.name} ist bereits in den Favoriten gespeichert.`);
+        alert(`${pokemon.name} is already saved.`);
     } else {
         pokemonFavoriten.push(pokemon);
         localStorage.setItem('pokemonfavoriten', JSON.stringify(pokemonFavoriten));
-        alert(`${pokemon.name} wurde zu den Favoriten hinzugefügt.`);
+        alert(`${pokemon.name} added to favourites.`);
         checkAndDisplayFavoritesMessage(); // Nach dem Hinzufügen aktualisieren
     }
 
@@ -122,7 +122,7 @@ function filter(e) {
     });
 
     if (!anyVisible) {
-        alert('Keine Pokémon gefunden');
+        alert('no Pokemon found');
     }
 }
 

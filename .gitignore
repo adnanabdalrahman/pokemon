@@ -1,8 +1,4 @@
 node_modules/
 dist/
-<<<<<<< HEAD
 .parcel-cache
 **/node_modules
-=======
-.parcel-cache
->>>>>>> d8e664efffc564f8925296405dd0869a036c763a
