@@ -7,7 +7,7 @@ if (pokemonfavoriten) pokemonfavoriten.forEach(setPokemonToList);
 // Darstellung der Favoriten 
 function setPokemonToList(pokemon) {
     if (!pokemon || !pokemon.name) {
-        console.error('pokemon oder pokemon.name ist undefiniert');
+        console.error('pokemon oder pokemon.name is undefined');
         return;
     }
 
