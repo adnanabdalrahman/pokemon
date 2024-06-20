@@ -46,6 +46,14 @@ function setPokemonToList(pokemon){
     //saveButton.setAttribute("onClick", 'saveToFav('+JSON.stringify(pokemonObj) + ')');
     saveButton.innerText = 'Save';
     saveButton.classList.add('inline-flex', 'items-center', 'justify-center','mx-4', 'align-center', 'border-2', 'rounded-lg', 'font-bold', 'p-2', 'border-blue-400', 'rounded'); 
+    
+    // Überprüfen, ob das Pokémon bereits als Favorit gespeichert ist
+    let pokemonFavoriten = JSON.parse(localStorage.getItem('pokemonfavoriten')) || [];
+    if (pokemonFavoriten.find(p => p.id === pokemon.id)) {
+        saveButton.innerText = 'Saved';
+        saveButton.classList.add('bg-gray-300', 'text-red-500');
+    }
+
     saveButton.addEventListener('click', function() {
         saveToFav(pokemonObj);
     });
@@ -74,36 +82,47 @@ function setPokemonToList(pokemon){
 }
 
 
-function saveToFav(pokemon){
-    let pokemonfavoriten = JSON.parse(localStorage.getItem('pokemonfavoriten'));
-    if (pokemonfavoriten === null)
-        pokemonfavoriten = [pokemon];
-    else
-        if (!pokemonfavoriten.find(p => p.id === pokemon.id)){
-            pokemonfavoriten.push(pokemon);
-        }
+function saveToFav(pokemon) {
+    let pokemonFavoriten = JSON.parse(localStorage.getItem('pokemonfavoriten')) || [];
 
-    localStorage.setItem('pokemonfavoriten', JSON.stringify(pokemonfavoriten));
+    // Überprüfen, ob das Pokemon bereits in den Favoriten vorhanden ist
+    let isAlreadyFavorited = pokemonFavoriten.some(p => p.id === pokemon.id);
 
-    console.log(pokemonfavoriten)
+    if (isAlreadyFavorited) {
+        alert(`${pokemon.name} ist bereits in den Favoriten gespeichert.`);
+    } else {
+        pokemonFavoriten.push(pokemon);
+        localStorage.setItem('pokemonfavoriten', JSON.stringify(pokemonFavoriten));
+        alert(`${pokemon.name} wurde zu den Favoriten hinzugefügt.`);
+        checkAndDisplayFavoritesMessage(); // Nach dem Hinzufügen aktualisieren
+    }
 
+    console.log(pokemonFavoriten);
 }
+
 
 
 // filter 
 const filterInput = document.getElementById('search');
-filterInput.addEventListener('keyup',(e) => filter(e));
+filterInput.addEventListener('keyup', (e) => filter(e));
 
 function filter(e) {
     const filter = e.target.value.toUpperCase();
     const lis = Array.from(document.getElementsByTagName('li'));
+    let anyVisible = false;
 
     lis.forEach(li => {
         const name = li.getElementsByClassName('name')[0].textContent;
-        if (name.toUpperCase().startsWith(filter)) 
+        if (name.toUpperCase().startsWith(filter)) {
             li.style.display = 'flex';
-        else
-        li.style.display = 'none';
+            anyVisible = true;
+        } else {
+            li.style.display = 'none';
+        }
     });
+
+    if (!anyVisible) {
+        alert('Keine Pokémon gefunden');
+    }
 }
 

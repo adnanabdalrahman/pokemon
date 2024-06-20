@@ -127,3 +127,20 @@ function saveNoteButton(pokemon) {
         }
     }
 }
+
+// Überprüfung und Anzeige des Favoriten-Texts
+document.addEventListener('DOMContentLoaded', function() {
+    checkAndDisplayFavoritesMessage();
+});
+
+function checkAndDisplayFavoritesMessage() {
+    let pokemonFavoriten = JSON.parse(localStorage.getItem('pokemonfavoriten')) || [];
+
+    if (pokemonFavoriten.length > 0) {
+        document.getElementById('favoritesMessage').style.display = 'block';
+        document.getElementById('noFavoritesMessage').style.display = 'none';
+    } else {
+        document.getElementById('favoritesMessage').style.display = 'none';
+        document.getElementById('noFavoritesMessage').style.display = 'block';
+    }
+}
